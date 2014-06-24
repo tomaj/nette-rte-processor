@@ -3,16 +3,23 @@
 namespace App\Model\Typo;
 
 /**
- * Text formater pre TYPO
+ * Text formater pre TYPO3
  *
  * Pomocou tejto triedy je mozne vypisat na stranku text vlozeny pomocou RTE
  * <code>
- * \Topstar\Typo\TextFormatter::rteTransform($article->bodytext)
+ * \App\Model\Typo\TextFormatter::rteTransform($article->bodytext)
  * </code>
  *
  * Pre pouzitie v presenteri:
  * <code>
  * {!$bodytext|rtetransform}
+ * </code>
+ *
+ * je vsak treba zaregistrovat ten helper:
+ * <code> 
+ * $template->addFilter('rtetransform', function($text) {
+ *	return \App\Model\Typo\TextFormatter::rteTransform($text);
+ * });
  * </code>
  */
 class TextFormatter {
