@@ -6,10 +6,12 @@ Requirements
 
 nette-rte-processor requires PHP 5.3.0 or higher.
 
+**WARNING:** Most of code is from TYPO3 t3lib library! - *So it isnt very nice ;-)*
+
 Installation
 ------------
 
-The best way to install nette-rte-processor  is using  [Composer](http://getcomposer.org/):
+The best way to install nette-rte-processor is using [Composer](http://getcomposer.org/):
 
 ```sh
 $ composer require tomaj/nette-rte-processor
@@ -26,7 +28,7 @@ Usage
 You can use simple static function
 
 ```
-\App\Model\Typo::rteTransform($bodytext)
+\App\Model\Typo\TextFormatter::rteTransform($bodytext)
 ```
 
 or create helper for using in templates:
