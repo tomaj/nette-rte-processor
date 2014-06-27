@@ -1,6 +1,13 @@
 Nette RTE processor
 ====================
 
+[![Build Status](https://secure.travis-ci.org/tomaj/nette-rte-processor.png)](http://travis-ci.org/tomaj/nette-rte-processor)
+[![Dependency Status](https://www.versioneye.com/user/projects/53abc9dcd043f9074a00000d/badge.svg)](https://www.versioneye.com/user/projects/53abc9dcd043f9074a00000d)
+
+[![Latest Stable Version](https://poser.pugx.org/tomaj/nette-rte-processor/v/stable.svg)](https://packagist.org/packages/tomaj/nette-rte-processor)
+[![Latest Unstable Version](https://poser.pugx.org/tomaj/nette-rte-processor/v/unstable.svg)](https://packagist.org/packages/tomaj/nette-rte-processor)
+[![License](https://poser.pugx.org/tomaj/nette-rte-processor/license.svg)](https://packagist.org/packages/tomaj/nette-rte-processor)
+
 Requirements
 ------------
 
