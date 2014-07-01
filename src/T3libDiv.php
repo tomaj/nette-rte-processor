@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\Typo;
+namespace Tomaj\RTEProcessor;
 
 /**
  * From file t3lib/class.t3lib_div.php

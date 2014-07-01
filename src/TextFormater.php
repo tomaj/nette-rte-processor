@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Model\Typo;
+namespace Tomaj\RTEProcessor;
 
 /**
  * Text formater pre TYPO3
  *
  * Pomocou tejto triedy je mozne vypisat na stranku text vlozeny pomocou RTE
  * <code>
- * \App\Model\Typo\TextFormatter::rteTransform($article->bodytext)
+ * \Tomaj\RTEProcessor\TextFormatter::rteTransform($article->bodytext)
  * </code>
  *
  * Pre pouzitie v presenteri:
@@ -18,7 +18,7 @@ namespace App\Model\Typo;
  * je vsak treba zaregistrovat ten helper:
  * <code> 
  * $template->addFilter('rtetransform', function($text) {
- *	return \App\Model\Typo\TextFormatter::rteTransform($text);
+ *	return \Tomaj\RTEProcessor\TextFormatter::rteTransform($text);
  * });
  * </code>
  */

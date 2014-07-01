@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Model\Typo;
+namespace Tomaj\RTEProcessor;
 
 /**
  * From file t3lib/class.t3lib_parsehtml_proc.php
  *
  * <code>
- * $t3libParsehtmlProc = new T3libParsehtmlProc();
+ * $t3libParsehtmlProc = new \Tomaj\RTEProcessor\T3libParsehtmlProc();
  * $text = $t3libParsehtmlProc->rteTransform($text);
  * </code>
  */

@@ -35,14 +35,14 @@ Usage
 You can use simple static function
 
 ```
-\App\Model\Typo\TextFormatter::rteTransform($bodytext)
+\Tomaj\RTEProcessor\TextFormatter::rteTransform($bodytext)
 ```
 
 or create helper for using in templates:
 
 ```
 $template->addFilter('rtetransform', function($text) {
-	return \App\Model\Typo\TextFormatter::rteTransform($text);
+	return \Tomaj\RTEProcessor\TextFormatter::rteTransform($text);
 });
 ```
 
