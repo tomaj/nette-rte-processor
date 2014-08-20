@@ -52,7 +52,8 @@ class T3libParsehtmlProc {
 					} elseif ((isset($pU['scheme']) && $pU['scheme']) || ($urlChar && (!$fileChar || $urlChar < $fileChar))) {
 							// url (external): if has scheme or if a '.' comes before a '/'.
 						$href = $link_param;
-						if (!$pU['scheme']) {
+						$scheme = isset($pU['scheme']) ? trim($pU['scheme']) : '';
+						if (!$scheme) {
 							$href = 'http://' . $href;
 						}
 						$external = TRUE;
@@ -107,7 +108,7 @@ class T3libParsehtmlProc {
 				if (isset($attribArray['href']) && strlen($attribArray['href'])) { // ONLY do this if href has content - the <a> tag COULD be an anchor and if so, it should be preserved...
 					$uP = parse_url(strtolower($attribArray['href']));
 					if (!$uP['scheme']) {
-						$attribArray['href'] = $this->siteUrl() . substr($attribArray['href'], strlen($this->relBackPath));
+						$attribArray['href'] = $this->siteUrl() . $attribArray['href'];
 					} elseif ($uP['scheme'] != 'mailto') {
 						$attribArray['data-htmlarea-external'] = 1;
 					}

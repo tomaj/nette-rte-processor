@@ -62,6 +62,7 @@ class TextFormatter {
 		$startPartialHtml = mb_strpos($rawHtml, '<!-- START PARTIAL HTML -->') + mb_strlen('<!-- START PARTIAL HTML -->');
 		$endPartialHtml = mb_strpos($rawHtml, '<!-- END PARTIAL HTML -->');
 		$text = mb_substr($rawHtml, $startPartialHtml, $endPartialHtml - $startPartialHtml);
+		$text = str_replace('<p></p>', '', $text);
 		return $text;
 	}
 }
