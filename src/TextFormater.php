@@ -33,7 +33,6 @@ class TextFormatter {
 		// Add every line to p tag
 		$text = preg_replace('#\r?\n#', PHP_EOL, $text);
 		$text = '<p>' . implode('</p><p>', explode(PHP_EOL, $text)) . '</p>';
-		$text = str_replace('<p></p>', '<p>&nbsp;</p>', $text);
 
 		// Transform links
 		$t3libParsehtmlProc = new T3libParsehtmlProc();
