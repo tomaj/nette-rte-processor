@@ -106,10 +106,12 @@ class T3libParsehtmlProc {
 
 					// Checking if there is a scheme, and if not, prepend the current url.
 				if (isset($attribArray['href']) && strlen($attribArray['href'])) { // ONLY do this if href has content - the <a> tag COULD be an anchor and if so, it should be preserved...
+					
 					$uP = parse_url(strtolower($attribArray['href']));
-					if (!$uP['scheme']) {
+					$scheme = isset($uP['scheme']) ? $uP['scheme'] : '';
+					if (!$scheme) {
 						$attribArray['href'] = $this->siteUrl() . $attribArray['href'];
-					} elseif ($uP['scheme'] != 'mailto') {
+					} elseif ($scheme != 'mailto') {
 						$attribArray['data-htmlarea-external'] = 1;
 					}
 				} else {

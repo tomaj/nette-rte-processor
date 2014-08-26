@@ -50,7 +50,7 @@ class TextFormatter {
 		foreach ($images as $imageItem) {
 			/* @var $imageItem \DOMElement */
 			$imageSrc = (string) $imageItem->getAttribute('src');
-			if (! preg_match('#^http[s]?://#i', $imageSrc)) {
+			if (!preg_match('#^http[s]?://#i', $imageSrc) && !preg_match('#^/#i', $imageSrc)) {
 				$imageSrc = '/' . $imageSrc;
 				$imageItem->setAttribute('src', $imageSrc);
 			}
