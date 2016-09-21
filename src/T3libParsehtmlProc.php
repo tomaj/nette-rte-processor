@@ -29,7 +29,7 @@ class T3libParsehtmlProc {
 			$error = '';
 			if ($k % 2) { // block:
 				$tagCode = T3libDiv::unQuoteFilenames(trim(substr($this->getFirstTag($v), 0, -1)), TRUE);
-				$link_param = $tagCode[1];
+				$link_param = isset($tagCode[1]) ? $tagCode[1] : '';
 				$href = '';
 				$external = FALSE;
 					// Parsing the typolink data. This parsing is roughly done like in tslib_content->typolink()
@@ -66,9 +66,6 @@ class T3libParsehtmlProc {
 						$link_params_parts = explode('#', $idPart);
 						$idPart = trim($link_params_parts[0]);
 						$sectionMark = isset($link_params_parts[1]) ? trim($link_params_parts[1]) : '';
-						if (!strcmp($idPart, '')) {
-							$idPart = $this->recPid;
-						} // If no id or alias is given, set it to class record pid
 						$href = '?id=' . $link_param;
 					}
 				}
@@ -90,7 +87,7 @@ class T3libParsehtmlProc {
 			// Return content:
 		return implode('', $blockSplit);
 	}
-	
+
 	/**
 	 * Converting <A>-tags to absolute URLs (+ setting rtekeep attribute)
 	 *
@@ -106,7 +103,7 @@ class T3libParsehtmlProc {
 
 					// Checking if there is a scheme, and if not, prepend the current url.
 				if (isset($attribArray['href']) && strlen($attribArray['href'])) { // ONLY do this if href has content - the <a> tag COULD be an anchor and if so, it should be preserved...
-					
+
 					$uP = parse_url(strtolower($attribArray['href']));
 					$scheme = isset($uP['scheme']) ? $uP['scheme'] : '';
 					if (!$scheme) {
@@ -128,7 +125,7 @@ class T3libParsehtmlProc {
 		}
 		return implode('', $blockSplit);
 	}
-	
+
 	/**
 	 * Returns an array with the $content divided by tag-blocks specified with the list of tags, $tag
 	 * Even numbers in the array are outside the blocks, Odd numbers are block-content.
@@ -143,9 +140,9 @@ class T3libParsehtmlProc {
 	protected function splitIntoBlock($tag, $content, $eliminateExtraEndTags = 0) {
 		$tags = array_unique(T3libDiv::trimExplode(',', $tag, 1));
 		$regexStr = '/\<\/?(' . implode('|', $tags) . ')(\s*\>|\s[^\>]*\>)/si';
-	
+
 		$parts = preg_split($regexStr, $content);
-	
+
 		$newParts = array();
 		$pointer = strlen($parts[0]);
 		$buffer = $parts[0];
@@ -155,7 +152,7 @@ class T3libParsehtmlProc {
 		while (list($k, $v) = each($parts)) {
 			$isEndTag = substr($content, $pointer, 2) == '</' ? 1 : 0;
 			$tagLen = strcspn(substr($content, $pointer), '>') + 1;
-	
+
 			if (!$isEndTag) { // We meet a start-tag:
 				if (!$nested) { // Ground level:
 					$newParts[] = $buffer; // previous buffer stored
@@ -183,12 +180,12 @@ class T3libParsehtmlProc {
 				$pointer += strlen($mbuffer);
 				$buffer .= $mbuffer;
 			}
-	
+
 		}
 		$newParts[] = $buffer;
 		return $newParts;
 	}
-	
+
 	/**
 	 * Returns SiteURL based on thisScript.
 	 *
@@ -198,7 +195,7 @@ class T3libParsehtmlProc {
 	protected function siteUrl() {
 		return '/';
 	}
-	
+
 	/**
 	 * Returns the first tag in $str
 	 * Actually everything from the begining of the $str is returned, so you better make sure the tag is the first thing...
@@ -211,7 +208,7 @@ class T3libParsehtmlProc {
 		$endLen = strpos($str, '>') + 1;
 		return substr($str, 0, $endLen);
 	}
-	
+
 	/**
 	 * Removes the first and last tag in the string
 	 * Anything before the first and after the last tags respectively is also removed
@@ -227,7 +224,7 @@ class T3libParsehtmlProc {
 		// return
 		return substr($str, $start + 1, $end - $start - 1);
 	}
-	
+
 	/**
 	 * Get tag attributes, the classic version (which had some limitations?)
 	 *
@@ -240,7 +237,7 @@ class T3libParsehtmlProc {
 		$attr = $this->get_tag_attributes($tag, $deHSC);
 		return is_array($attr[0]) ? $attr[0] : array();
 	}
-	
+
 	/**
 	 * Returns an array with all attributes as keys. Attributes are only lowercase a-z
 	 * If a attribute is empty (shorthand), then the value for the key is empty. You can check if it existed with isset()
@@ -280,7 +277,7 @@ class T3libParsehtmlProc {
 			return array($attributes, $attributesMeta);
 		}
 	}
-	
+
 	/**
 	 * Returns an array with the 'components' from an attribute list. The result is normally analyzed by get_tag_attributes
 	 * Removes tag-name if found
@@ -296,7 +293,7 @@ class T3libParsehtmlProc {
 			return array(array(), array());
 		}
 		$tag_tmp = $matches[2];
-	
+
 		$metaValue = array();
 		$value = array();
 		$matches = array();
@@ -314,7 +311,7 @@ class T3libParsehtmlProc {
 		}
 		return array($value, $metaValue);
 	}
-	
+
 	/**
 	 * Inverse version of htmlspecialchars()
 	 *
