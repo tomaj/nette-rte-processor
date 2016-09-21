@@ -11,7 +11,7 @@ Nette RTE processor
 Requirements
 ------------
 
-nette-rte-processor requires PHP 5.3.0 or higher.
+nette-rte-processor requires PHP 5.6.0 or higher.
 
 **WARNING:** Most of code is from TYPO3 t3lib library! - *So it isnt very nice ;-)*
 
